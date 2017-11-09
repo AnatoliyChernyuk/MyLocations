@@ -33,11 +33,16 @@ class LocationDetailsViewController: UITableViewController {
     var categoryName = "No Category"
     var managedObjectContext: NSManagedObjectContext!
     var date = Date()
+    var locationToEdit: Location?
+    var descriptionText = ""
     
     //MARK: - View methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        describtionTextView.text = ""
+        if let location = locationToEdit {
+            title = "Edit Location"
+        }
+        describtionTextView.text = descriptionText
         categoryLabel.text = categoryName
         latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
         longitudeLabel.text = String(format: "%.8f", coordinate.longitude)

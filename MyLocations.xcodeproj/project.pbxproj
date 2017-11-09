@@ -21,6 +21,7 @@
 		D3E231C41F8ED727001CE020 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3E231C21F8ED727001CE020 /* Main.storyboard */; };
 		D3E231C61F8ED727001CE020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E231C51F8ED727001CE020 /* Assets.xcassets */; };
 		D3E231C91F8ED727001CE020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3E231C71F8ED727001CE020 /* LaunchScreen.storyboard */; };
+		D3FF164E1FB4EB4B00547AC6 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FF164D1FB4EB4B00547AC6 /* LocationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		D3E231C51F8ED727001CE020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3E231C81F8ED727001CE020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3E231CA1F8ED727001CE020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3FF164D1FB4EB4B00547AC6 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				D34A04841FA4B4E800ADE16C /* LocationsViewController.swift */,
 				D3BA6AA91F93C49C007CD37A /* HudView.swift */,
 				D3BA6AAB1F94B4AB007CD37A /* Functions.swift */,
+				D3FF164D1FB4EB4B00547AC6 /* LocationCell.swift */,
 				D3BA6AAD1F955917007CD37A /* DataModel.xcdatamodeld */,
 				D3BA6AB01F95EFD5007CD37A /* Location+CoreDataClass.swift */,
 				D3BA6AB11F95EFD5007CD37A /* Location+CoreDataProperties.swift */,
@@ -169,6 +172,7 @@
 				D3BA6AAA1F93C49C007CD37A /* HudView.swift in Sources */,
 				D34A04851FA4B4E800ADE16C /* LocationsViewController.swift in Sources */,
 				D3BA6AB31F95EFD5007CD37A /* Location+CoreDataProperties.swift in Sources */,
+				D3FF164E1FB4EB4B00547AC6 /* LocationCell.swift in Sources */,
 				D3BA6AAC1F94B4AB007CD37A /* Functions.swift in Sources */,
 				D3E231BD1F8ED727001CE020 /* AppDelegate.swift in Sources */,
 				D3BA6AB21F95EFD5007CD37A /* Location+CoreDataClass.swift in Sources */,
