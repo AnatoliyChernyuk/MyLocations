@@ -36,6 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let controller = tabBarController.viewControllers?.first as! CurrentLocationViewController
         controller.managedObjectContext = managedObjectContext
         
+        if let tabBarViewControllers = tabBarController.viewControllers {
+            let navigationController = tabBarViewControllers[1] as! UINavigationController
+            let locationController = navigationController.viewControllers[0] as! LocationsViewController
+            locationController.managedObjectContext = managedObjectContext
+        }
+        
         print("App's Dir is \(applicationDocumentsDirectory)")
         
         listenForFatalCoreDataNotifications()
