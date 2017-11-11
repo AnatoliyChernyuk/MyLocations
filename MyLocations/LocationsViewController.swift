@@ -42,7 +42,7 @@ class LocationsViewController: UITableViewController {
     
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Edit Location" {
+        if segue.identifier == "EditLocation" {
             let navigationController = segue.destination as! UINavigationController
             let controller = navigationController.topViewController as! LocationDetailsViewController
             controller.managedObjectContext = managedObjectContext
