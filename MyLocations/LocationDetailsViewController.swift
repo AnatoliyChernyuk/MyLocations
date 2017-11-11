@@ -33,7 +33,17 @@ class LocationDetailsViewController: UITableViewController {
     var categoryName = "No Category"
     var managedObjectContext: NSManagedObjectContext!
     var date = Date()
-    var locationToEdit: Location?
+    var locationToEdit: Location? {
+        didSet {
+            if let location = locationToEdit {
+                descriptionText = location.locationDescription
+                categoryName = location.category
+                date = location.date
+                coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+                placemark = location.placemark
+            }
+        }
+    }
     var descriptionText = ""
     
     //MARK: - View methods
