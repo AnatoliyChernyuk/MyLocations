@@ -12,7 +12,23 @@ import CoreLocation
 
 class LocationsViewController: UITableViewController {
     var managedObjectContext: NSManagedObjectContext!
-    var locations = [Location]()
+    lazy var fetchedResultsController: NSFetchedResultsController<Location> = {
+        let fetchRequest = NSFetchRequest<Location>()
+        
+        let entity = Location.entity()
+        fetchRequest.entity = entity
+        
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchRequest.fetchBatchSize = 20
+        
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "Locations")
+        
+        fetchResultsController.delegate = self
+        return fetchResultsController
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
