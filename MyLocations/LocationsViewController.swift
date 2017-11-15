@@ -23,7 +23,7 @@ class LocationsViewController: UITableViewController {
         
         fetchRequest.fetchBatchSize = 20
         
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "Locations")
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Locations")
         
         fetchResultsController.delegate = self
         return fetchResultsController
@@ -32,26 +32,18 @@ class LocationsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let fetchRequest = NSFetchRequest<Location>()
-        let entity = Location.entity()
-        fetchRequest.entity = entity
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        do {
-            locations = try managedObjectContext.fetch(fetchRequest)
-        } catch {
-            fatalCoreDataError(error)
-        }
+        performFetch()
     }
     
     //MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        let sectionInfo = fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
-        let location = locations[indexPath.row]
+        let location = fetchedResultsController.object(at: indexPath)
         cell.configure(for: location)
         return cell
     }
@@ -63,10 +55,22 @@ class LocationsViewController: UITableViewController {
             let controller = navigationController.topViewController as! LocationDetailsViewController
             controller.managedObjectContext = managedObjectContext
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
-                let location = locations[indexPath.row]
+                let location = fetchedResultsController.object(at: indexPath)
                 controller.locationToEdit = location
             }
         }
+    }
+    
+    func performFetch() {
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalCoreDataError(error)
+        }
+    }
+    
+    deinit {
+        fetchedResultsController.delegate = nil
     }
 }
 
