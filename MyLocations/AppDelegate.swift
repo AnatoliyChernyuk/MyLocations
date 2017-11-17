@@ -38,8 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let tabBarViewControllers = tabBarController.viewControllers {
             let navigationController = tabBarViewControllers[1] as! UINavigationController
-            let locationController = navigationController.viewControllers[0] as! LocationsViewController
-            locationController.managedObjectContext = managedObjectContext
+            let locationViewController = navigationController.viewControllers[0] as! LocationsViewController
+            locationViewController.managedObjectContext = managedObjectContext
+            let _ = locationViewController.view
         }
         
         print("App's Dir is \(applicationDocumentsDirectory)")

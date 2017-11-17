@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import CoreLocation
 
 extension LocationsViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
