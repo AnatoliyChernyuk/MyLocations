@@ -16,9 +16,23 @@ class MapViewController: UIViewController {
     var managedObjectContext: NSManagedObjectContext! {
         didSet {
             NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext, queue: OperationQueue.main) {
-                _ in
+                notification in
                 if self.isViewLoaded {
-                    self.updateLocations()
+                    //self.updateLocations()
+                    var deleted = [Location]()
+                    var updated = [Location]()
+                    if let dictionary = notification.userInfo {
+                        if let temp = dictionary["deleted"] as? [Location] {
+                            deleted = Array(temp)
+                        }
+                        if let temp = dictionary["inserted"] as? [Location] {
+                            updated += Array(temp)
+                        }
+                        if let temp = dictionary["updated"] as? [Location] {
+                            updated += Array(temp)
+                        }
+                    }
+                    self.refreshLocations(deleted: deleted, updated: updated)
                 }
             }
         }
@@ -41,6 +55,11 @@ class MapViewController: UIViewController {
         fetchRequest.entity = entity
         locations = try! managedObjectContext.fetch(fetchRequest)
         mapView.addAnnotations(locations)
+    }
+    
+    func refreshLocations(deleted: [Location], updated: [Location]) {
+        mapView.removeAnnotations(deleted + updated)
+        mapView.addAnnotations(updated)
     }
     
     func region(for annotations: [MKAnnotation]) -> MKCoordinateRegion {
