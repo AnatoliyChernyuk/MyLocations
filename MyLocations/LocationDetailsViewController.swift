@@ -26,6 +26,8 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var addPhotoLabel: UILabel!
     
     //MARK: - Variables
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
@@ -45,6 +47,13 @@ class LocationDetailsViewController: UITableViewController {
         }
     }
     var descriptionText = ""
+    var image: UIImage? {
+        didSet {
+            if let theImage = image {
+                show(image: theImage)
+            }
+        }
+    }
     
     //MARK: - View methods
     override func viewDidLoad() {
@@ -71,6 +80,12 @@ class LocationDetailsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 && indexPath.row == 0 {
             return 88
+        } else if indexPath.section == 1 {
+            if imageView.isHidden {
+                return 44
+            } else {
+                return calculateRowHeight()
+            }
         } else if indexPath.section == 2 && indexPath.row == 2 {
             addressLabel.frame.size = CGSize(width: view.bounds.width - 115, height: 10000)
             addressLabel.sizeToFit()
@@ -92,6 +107,9 @@ class LocationDetailsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
             describtionTextView.becomeFirstResponder()
+        } else if indexPath.section == 1 && indexPath.row == 0 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            pickPhoto()
         }
     }
     
@@ -144,6 +162,18 @@ class LocationDetailsViewController: UITableViewController {
             return
         }
         describtionTextView.resignFirstResponder()
+    }
+    
+    func show(image: UIImage) {
+        imageView.image = image
+        imageView.isHidden = false
+        imageView.frame = CGRect(x: 10, y: 10, width: 260, height: 260)
+        addPhotoLabel.isHidden = true
+    }
+    
+    func calculateRowHeight() -> CGFloat {
+        let aspectRatio = image!.size.width / image!.size.height
+        return 260 / aspectRatio + 20
     }
     
     //MARK: - Actions

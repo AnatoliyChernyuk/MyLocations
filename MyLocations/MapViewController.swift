@@ -60,6 +60,12 @@ class MapViewController: UIViewController {
     func refreshLocations(deleted: [Location], updated: [Location]) {
         mapView.removeAnnotations(deleted + updated)
         mapView.addAnnotations(updated)
+        for annotation in mapView.selectedAnnotations {
+            if let view = mapView.view(for: annotation), view.isSelected {
+                mapView.deselectAnnotation(annotation, animated: true)
+                mapView.selectAnnotation(annotation, animated: true)
+            }
+        }
     }
     
     func region(for annotations: [MKAnnotation]) -> MKCoordinateRegion {
