@@ -30,11 +30,17 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var addPhotoLabel: UILabel!
     
     //MARK: - Variables
-    var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    var placemark: CLPlacemark?
     var categoryName = "No Category"
-    var managedObjectContext: NSManagedObjectContext!
+    var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var date = Date()
+    var descriptionText = ""
+    var image: UIImage? {
+        didSet {
+            if let theImage = image {
+                show(image: theImage)
+            }
+        }
+    }
     var locationToEdit: Location? {
         didSet {
             if let location = locationToEdit {
@@ -46,14 +52,9 @@ class LocationDetailsViewController: UITableViewController {
             }
         }
     }
-    var descriptionText = ""
-    var image: UIImage? {
-        didSet {
-            if let theImage = image {
-                show(image: theImage)
-            }
-        }
-    }
+    var managedObjectContext: NSManagedObjectContext!
+    var observer: Any!
+    var placemark: CLPlacemark?
     
     //MARK: - View methods
     override func viewDidLoad() {
@@ -74,24 +75,22 @@ class LocationDetailsViewController: UITableViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         gestureRecognizer.cancelsTouchesInView = false
         tableView.addGestureRecognizer(gestureRecognizer)
+        listenForBackgroundNotification()
     }
     
     //MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 && indexPath.row == 0 {
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
             return 88
-        } else if indexPath.section == 1 {
-            if imageView.isHidden {
-                return 44
-            } else {
-                return calculateRowHeight()
-            }
-        } else if indexPath.section == 2 && indexPath.row == 2 {
+        case (1, _):
+            return imageView.isHidden ? 44 : calculateRowHeight()
+        case (2, 2):
             addressLabel.frame.size = CGSize(width: view.bounds.width - 115, height: 10000)
             addressLabel.sizeToFit()
             addressLabel.frame.origin.x = view.bounds.size.width - addressLabel.bounds.size.width - 15
             return addressLabel.bounds.size.height + 20
-        } else {
+        default:
             return 44
         }
     }
@@ -173,7 +172,25 @@ class LocationDetailsViewController: UITableViewController {
     
     func calculateRowHeight() -> CGFloat {
         let aspectRatio = image!.size.width / image!.size.height
-        return 260 / aspectRatio + 20
+        let height = 260 / aspectRatio
+        imageView.frame.size.height = height
+        return height + 20
+    }
+    
+    func listenForBackgroundNotification() {
+        observer = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidEnterBackground, object: nil, queue: OperationQueue.main) {
+            [weak self] _ in
+            if let strongSelf = self {
+                if strongSelf.presentedViewController != nil {
+                    strongSelf.dismiss(animated: true, completion: nil)
+                }
+                strongSelf.describtionTextView.resignFirstResponder()
+            }
+        }
+    }
+    deinit {
+        print("*** deinit \(self)")
+        NotificationCenter.default.removeObserver(observer)
     }
     
     //MARK: - Actions
@@ -187,6 +204,7 @@ class LocationDetailsViewController: UITableViewController {
         } else {
             location = Location(context: managedObjectContext)
             hudView.text = "Taggged"
+            location.photoID = nil
         }
         
         location.locationDescription = describtionTextView.text
@@ -195,6 +213,20 @@ class LocationDetailsViewController: UITableViewController {
         location.longitude = coordinate.longitude
         location.date = date
         location.placemark = placemark
+        
+        if let image = image {
+            if !location.hasPhoto {
+                location.photoID = Location.nextPhotoID() as NSNumber
+            }
+            if let data = UIImageJPEGRepresentation(image, 0.5) {
+                do {
+                    try data.write(to: location.photoURL, options: .atomic)
+                } catch {
+                    print("Error writing file: \(error)")
+                }
+            }
+        }
+        
         do {
             try managedObjectContext.save()
             afterDelay(0.6) {

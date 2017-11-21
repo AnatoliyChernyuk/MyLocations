@@ -9,11 +9,6 @@
 import UIKit
 import CoreData
 
-let applicationDocumentsDirectory: URL = {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    return paths.first!
-}()
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
