@@ -63,7 +63,8 @@ class LocationDetailsViewController: UITableViewController {
             title = "Edit Location"
             if location.hasPhoto {
                 if let theImage = location.photoImage {
-                    show(image: theImage)
+                    image = theImage
+                    show(image: theImage) 
                 }
             }
         }

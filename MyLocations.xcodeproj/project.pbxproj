@@ -12,6 +12,7 @@
 		D30D9CAC1FBF9A560069BA5C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D30D9CAB1FBF9A560069BA5C /* MapKit.framework */; };
 		D30D9CAE1FBF9C940069BA5C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30D9CAD1FBF9C940069BA5C /* MapViewController.swift */; };
 		D30D9CB01FBF9DE10069BA5C /* extensionMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30D9CAF1FBF9DE10069BA5C /* extensionMapViewController.swift */; };
+		D30EFC341FC6091200858576 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EFC331FC6091200858576 /* UIImage+Resize.swift */; };
 		D34A04851FA4B4E800ADE16C /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A04841FA4B4E800ADE16C /* LocationsViewController.swift */; };
 		D3BA6AA61F928333007CD37A /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA6AA51F928333007CD37A /* LocationDetailsViewController.swift */; };
 		D3BA6AA81F92BBCB007CD37A /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA6AA71F92BBCB007CD37A /* CategoryPickerViewController.swift */; };
@@ -35,6 +36,7 @@
 		D30D9CAB1FBF9A560069BA5C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D30D9CAD1FBF9C940069BA5C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D30D9CAF1FBF9DE10069BA5C /* extensionMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionMapViewController.swift; sourceTree = "<group>"; };
+		D30EFC331FC6091200858576 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		D34A04841FA4B4E800ADE16C /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		D3BA6AA51F928333007CD37A /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		D3BA6AA71F92BBCB007CD37A /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				D3FF164D1FB4EB4B00547AC6 /* LocationCell.swift */,
 				D30D9CAD1FBF9C940069BA5C /* MapViewController.swift */,
 				D30D9CAF1FBF9DE10069BA5C /* extensionMapViewController.swift */,
+				D30EFC331FC6091200858576 /* UIImage+Resize.swift */,
 				D3BA6AAD1F955917007CD37A /* DataModel.xcdatamodeld */,
 				D3BA6AB01F95EFD5007CD37A /* Location+CoreDataClass.swift */,
 				D3BA6AB11F95EFD5007CD37A /* Location+CoreDataProperties.swift */,
@@ -209,6 +212,7 @@
 				D30D9CA91FBCC10D0069BA5C /* extensionLocationsViewController.swift in Sources */,
 				D3BA6AB21F95EFD5007CD37A /* Location+CoreDataClass.swift in Sources */,
 				D3BA6AA81F92BBCB007CD37A /* CategoryPickerViewController.swift in Sources */,
+				D30EFC341FC6091200858576 /* UIImage+Resize.swift in Sources */,
 				D3E231BF1F8ED727001CE020 /* CurrentLocationViewController.swift in Sources */,
 				D30D9CAE1FBF9C940069BA5C /* MapViewController.swift in Sources */,
 			);
