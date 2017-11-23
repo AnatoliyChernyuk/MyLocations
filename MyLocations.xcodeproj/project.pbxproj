@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D305918B1FC62A1D008424C2 /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305918A1FC62A1D008424C2 /* String+AddText.swift */; };
 		D30B2E6C1FC23D9E003E6316 /* extensionLocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30B2E6B1FC23D9D003E6316 /* extensionLocationDetailsViewController.swift */; };
 		D30D9CA91FBCC10D0069BA5C /* extensionLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30D9CA81FBCC10D0069BA5C /* extensionLocationsViewController.swift */; };
 		D30D9CAC1FBF9A560069BA5C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D30D9CAB1FBF9A560069BA5C /* MapKit.framework */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D305918A1FC62A1D008424C2 /* String+AddText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
 		D30B2E6B1FC23D9D003E6316 /* extensionLocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionLocationDetailsViewController.swift; sourceTree = "<group>"; };
 		D30D9CA81FBCC10D0069BA5C /* extensionLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionLocationsViewController.swift; sourceTree = "<group>"; };
 		D30D9CAB1FBF9A560069BA5C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -110,6 +112,7 @@
 				D30D9CAD1FBF9C940069BA5C /* MapViewController.swift */,
 				D30D9CAF1FBF9DE10069BA5C /* extensionMapViewController.swift */,
 				D30EFC331FC6091200858576 /* UIImage+Resize.swift */,
+				D305918A1FC62A1D008424C2 /* String+AddText.swift */,
 				D3BA6AAD1F955917007CD37A /* DataModel.xcdatamodeld */,
 				D3BA6AB01F95EFD5007CD37A /* Location+CoreDataClass.swift */,
 				D3BA6AB11F95EFD5007CD37A /* Location+CoreDataProperties.swift */,
@@ -201,6 +204,7 @@
 				D3BA6AA61F928333007CD37A /* LocationDetailsViewController.swift in Sources */,
 				D3BA6AAF1F955917007CD37A /* DataModel.xcdatamodeld in Sources */,
 				D30B2E6C1FC23D9E003E6316 /* extensionLocationDetailsViewController.swift in Sources */,
+				D305918B1FC62A1D008424C2 /* String+AddText.swift in Sources */,
 				D3E231C11F8ED727001CE020 /* SecondViewController.swift in Sources */,
 				D3BA6AAA1F93C49C007CD37A /* HudView.swift in Sources */,
 				D34A04851FA4B4E800ADE16C /* LocationsViewController.swift in Sources */,
